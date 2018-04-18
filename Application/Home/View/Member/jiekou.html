@@ -1,0 +1,141 @@
+﻿<include file="Public/header" title="应用列表" />
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav navbar-right">
+           <li class=""><a href="{:U('Index/index')}">首页</a></li>
+            <li><a href="{:U('Index/index')}">发布应用</a></li>
+            <li><a href="{:U('Index/listinfo')}">应用管理</a></li>
+            <li class="active"><a href="{:U('member/index')}">账户设置</a></li>
+        </ul>
+    </div> <!--/navbar-collapse--></div>
+</div>
+</header>
+<!--=== Breadcrumbs ===-->
+<div class="row-fluid breadcrumbs margin-bottom-20">
+<div class="container">
+    <h1 class="pull-left">我的信息</h1>
+    <ul class="pull-right breadcrumb">
+        <li>管理我的信息</li>
+    </ul>
+</div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container content recent">  
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xm-12">
+                <a class="btn-u" href="{:U('Index/index')}"><i class="fa fa-cloud-upload"></i> 上传新应用</a> &nbsp;&nbsp; </div>
+            <div class="col-md-4 col-md-offset-2 col-sm-6 col-xm-12">
+            <!--
+                <form method="get" id="searchform">
+                    <input type="hidden" name = "type" id="type" value="" />
+                    <input type="hidden" name = "group_key" id="group_key" value="" />
+                        <div class="input-group">
+                        <input type="text" name="name"  class="form-control " style="border-radius:0%  !important;" placeholder="查找应用" value="">
+                            <span class="input-group-btn">
+                                <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    -->
+                </div>
+            </div>
+            <div class="margin-bottom-20"></div>
+        </div> 
+    </div>
+    <div class="tab-v1 margin-bottom-20" style="display:none;">
+        <ul class="nav nav-tabs">
+            <li class="active"><a  href="javascript:void(0)">我的应用</a></li>
+            <!--<li class=""><a href="mygroup.html">我的分组</a></li>-->
+        </ul>                
+    </div>
+    <div class="my-header margin-bottom-20" style="border-bottom: 2px solid #eee;">
+        <div class="my-navbar my-navbar-default" role="navigation">
+            <div class="container" style="padding-left:0px">
+                <div class="my-collapse my-navbar-collapse my-navbar-responsive-collapse">
+                    <ul class="my-nav my-navbar-nav" style="float:left">
+                    <li><a href="{:U('member/index')}">我的信息</a></li>
+                    <li class="active"><a href="{:U('member/jiekou')}">接口配置</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-12">
+           <div class="margin-bottom-20">
+            <div class="panel pgy-panel-sea margin-bottom-40" id="tabbb">
+                <div class="panel-heading pgy-panel-heading">
+                  <h3 class="panel-title" style="color:#fff;min-height:34px;height:auto;">
+                  <div class="row">
+                  <div class="col-md-6 col-xs-12 col-sm-6 " style="margin-top:3px">
+                    <i class="fa fa-angle-double-right"></i>七牛接口配置 &nbsp;
+                   </div>
+                    </div>
+                   </h3>
+                </div>
+                <div class="tabbb_box" style="padding: 20px;">
+                <form action="{:U('member/config')}" method="post">
+                    <if condition="$result.uptype eq 1"> 
+                    <div class="form-group">
+                        <label>Access Key :[请到七牛个人面板-密匙管理中获取]</label>
+                        <input class="form-control" type="text" name="accesskey" value="{$result.accesskey}" placeholder="参照格式：shKQWYfW15bO73S21jc589ZX30OKseEcdVtiv5bR">
+                    </div>
+                    <div class="form-group">
+                        <label>Secret Key :[请到七牛个人面板-密匙管理中获取]</label>
+                        <input class="form-control" type="text" name="secretkey"  value="{$result.secretkey}" placeholder="参照格式：2-V8B7QQ-rzbhKhhgT8snTlklHAs1f577J344Bzi">
+                    </div>
+                    <div class="form-group">
+                        <label>空间名称 :[请到七牛资源首页-对象存储中获取]</label>
+                        <input class="form-control" type="text" name="bucket"  value="{$result.bucket}" placeholder="参照格式：xxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label><span style="color:red">七牛</span>空间域名: [请到七牛资源首页-对象存储中-测试域名中获取-直接复制过来]</label>
+                        <input class="form-control" type="text" name="domain"  value="{$result.domain}" placeholder="参照格式：http://o8o9gl61k.bpl.clogddb.com/">
+                    </div>
+                    <elseif condition="$result.uptype eq 3" />
+                        <div class="form-group">
+                        <label>token :</label>
+                        <input class="form-control" type="text" name="uptoken"  value="{$result.uptoken}" placeholder="请认真填写">
+                    </div>
+                    <div class="form-group">
+                        <label><span style="color:red">七牛</span>空间域名: [请到七牛资源首页-对象存储中-测试域名中获取-直接复制过来]</label>
+                        <input class="form-control" type="text" name="domain"  value="{$result.domain}" placeholder="参照格式：http://o8o9gl61k.bpl.clogddb.com/">
+                    </div>
+                    </if>
+                    <div class="form-group">
+                        <label>上传方式 :</label>
+                            <if condition="$result.uptype eq 1"> 七牛 &nbsp<a href="https://portal.qiniu.com/signup/choice" target="_blank">点击注册七牛账号</a> &nbsp &nbsp<a href="/index.php/Login/qiniujiaocheng.html" target="_blank"><span style="color:red">【接口配置教程】</a></span>
+                            <elseif condition="$result.uptype eq 2"/>本地
+                            <elseif condition="$result.uptype eq 3" /> 远程
+                            </if>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="{$fid}">
+                        <if condition="$listcount gt '0'">
+                            <button class="btn btn-success" disabled="disabled">更新</button> 
+                            【如需更改成其他配置信息，请删除之前所有APP】
+                        <else />
+                            <button class="btn btn-success" type="submit" >更新</button>
+                        </if>
+                        
+                    </div>
+                    
+
+                </form>
+                
+                
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--End Striped Rows-->
+    </div>
+    <div class="pager">{$page}
+        </div>
+
+</div><!--/container-->
+<include file="Public/footer" />
+</body>

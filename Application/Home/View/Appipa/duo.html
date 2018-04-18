@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$list.kename}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <!-- CSS Global Compulsory-->
+    <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__STATIC__/css/style.css" />
+    <link href="__STATIC__/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+
+</head>
+<!--[if lt IE 10]>
+<div class="browser_notice">
+您的浏览器版本较低，无法正确显示网站中的页面和功能，建议您使用 Chrome、Safari 或升级到 Internet Explorer 10 以上版本的浏览器。</div>
+<![endif]-->
+<body>
+
+<script type="text/javascript" src="__STATIC__/wap/jquery-1.7.2.min.js"></script>
+
+<div style="width:100%;">
+    <p style="text-align:center; margin:30px 0 30px 0;">
+            <if condition="$list.newlogo neq '' ">
+                        <img src="__IMG__{$list.newlogo}" class="img-rounded" width="125" height="125" />
+                    <else /> 
+                        <img src="__STATIC__/images/logo11.jpg" class="img-rounded" width="125" height="125" />
+                    </if>
+            <br><br>
+            {$list.kename}
+    </p>
+</div>
+
+<!---->
+<div style="margin-left:20px; margin-right:10px;">
+<volist name="info" id="vo">
+    <p style="text-align:center;"><a href="{$vo['tweb']}" class="btn-u" target="_blank" style="height:40px; width:100%;">{$vo['tname']}</a></p>
+</volist>
+</div>
+
+<!---->
+    <hr class="devider devider-dotted">
+    <div id="" class="view row margin-bottom-30">    
+        <div class="span12" style="text-align:center;">或者用手机扫描下面的二维码安装<br><br>
+            <img src="__PUBLIC__/png/{$qrcode}.png" width="117" height="116" />
+        </div>
+    </div>
+<!---->
+
+<if condition="$list.ttext neq '' ">
+	<div style="margin:0px auto;padding:0px auto; width:65%; margin-bottom:30px;">
+		<div style=" border:1px solid #efefef; background-color:#fafafa; padding:25px;">
+			<h1>应用介绍</h1>
+			<p style="word-break:break-all;">
+				{$list.ttext}
+			</p>
+		</div>
+	</div>
+</if>
+<link href="__STATIC__/wap/app.css" rel="stylesheet" type="text/css">
+<div id="weixin" style="display: none">
+    <div class="click_opacity"></div>
+    <div class="to_btn">
+        <span class="span1"><img src="__STATIC__/wap/click_btn.png"></span>
+        <span class="span2"><em>1</em> 点击右上角<img src="__STATIC__/wap/menu.png">打开菜单</span>
+        <span class="span2"><em>2</em> 选择<img src="__STATIC__/wap/safari.png">用Safari打开下载</span>
+    </div>
+</div>
+<div id="weixin_an" style="display: none">
+    <div class="click_opacity"></div>
+    <div class="to_btn">
+        <span class="span1"><img src="__STATIC__/wap/click_btn.png"></span>
+        <span class="span2"><em>1</em> 点击右上角<img src="__STATIC__/wap/menu_android.png">打开菜单</span>
+        <span class="span2 android_open"><em>2</em> 选择<img src="__STATIC__/wap/android.png"></span>
+    </div>
+</div>
+<script src="__STATIC__/wap/slick.min.js"></script>
+<script src="__STATIC__/wap/waypoints.min.js"></script>
+<script src="__STATIC__/wap/jquery.themepunch.revolution.min.js"></script>
+    <script>
+
+        $(function(){
+            var browser = {
+                versions: function() {
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return {
+                        trident: u.indexOf('Trident') > -1,
+                        presto: u.indexOf('Presto') > -1,
+                        webKit: u.indexOf('AppleWebKit') > -1,
+                        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
+                        mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/),
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
+                        iPad: u.indexOf('iPad') > -1,
+                        webApp: u.indexOf('Safari') == -1
+                    };
+                }()
+            }
+            if(is_weixin())
+            {
+                if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
+                    $('#weixin').show();
+                }else{
+                    $('#weixin_an').show();
+                }
+            }
+            var os_type =  2;
+            if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
+                if(os_type == 2){
+                    $('#down2').show();
+                }else{
+                    $('#down2').hide();
+                    $('#down_tip').show().html('请使用安卓设备安装');
+                }
+            }else if(browser.versions.android){
+                if(os_type == 1){
+                    $('#down2').show();
+                }else{
+                    $('#down2').hide();
+                    $('#down_tip').show().html('请使用IOS设备安装');
+                }
+            }
+        })
+        function ajaxTj()
+        {
+            var browser = {
+                versions: function() {
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return {
+                        trident: u.indexOf('Trident') > -1,
+                        presto: u.indexOf('Presto') > -1,
+                        webKit: u.indexOf('AppleWebKit') > -1,
+                        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
+                        mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/),
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
+                        iPad: u.indexOf('iPad') > -1,
+                        webApp: u.indexOf('Safari') == -1
+                    };
+                }()
+            }
+
+            var tip_val = $('#ios_tips').val();
+            if(tip_val ==1){
+                $('.pos_all').css('display','block');
+                $('#pos_inherit').addClass('pos_inherit');
+
+            }
+            if(!is_weixin())
+            {
+                                if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
+                    $("#down2").hide();
+                    $("#down_loading").show().delay(5000).fadeOut(100);
+                    $("#install_tips").hide().delay(5000).fadeIn(200);
+                }
+                            }
+
+            $.ajax({
+                type: "GET",
+                url:'/app/tj',
+                data: {package_key:'98d0f7fc5457ddb0777534f47adb9119'},
+                success: function(msg){
+                    //console.log(msg);
+                    if(msg == 1)
+                    {
+                        $('#down1').attr('href','#');
+                        $("#down1").attr("target", "");
+                        $('#down2').attr('href','');
+                        $("#down2").attr("target", "#");
+                    }
+                }
+            });
+        }
+        function is_weixin(){
+            var ua = navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        $(function() {
+            $('.close_ios9').click(function(){
+                $('.pos_all').css('display','none');
+                $('#pos_inherit').removeClass('pos_inherit');
+            });
+
+            $("#btnFk").on("click", function() {
+                $('#btncontact').css('display', 'block');
+                $('#btnFk').css('display', 'none');
+                $("#feedback_content_box").slideDown(600);
+                $("#feedback_content_box").animate({top: 0}, 600);
+                $("#feedback_content_box").focus();
+            });
+
+
+
+            $("#submit").on("click", function() {
+                var contact = $('#btncontact').val().trim();
+                var content = $('textarea').val().trim();
+                var app_key = "3c4f68eaf91d14a5b16a9129f0ffba0f";
+                var app_name = "定转爆粉";
+                var url = '/feedback/add';
+
+                if(!content || content == '反馈内容'){
+
+                    $("#content_tips").css({display:'block'});
+                    return false;
+                }
+
+                $('#toggle').css('display', 'none');
+                $('#content_tips').css('display', 'none');
+                $("#feedback_content_box").slideUp(600);
+                $("#feedback_content_box").animate({ top: 20 }, 600);
+
+
+                if( !contact || contact == 'Email/QQ/微信/电话' ){
+                    contact = '匿名';
+                }
+
+                $.post(url,{contact:contact,content:content,app_key:app_key,app_name:app_name},function(msg){
+                    if(msg){
+                        $('#for_tips,textarea,#btnFk,#submit').css({display:'none'})
+                    }else{
+                        $('.feedback_tip').text('提交失败，请 <a href="/site/contact">吐槽</a>');
+                    }
+                    $('.feedback_tip').css({display:'block'})
+                },'json')
+            });
+        })
+    </script>
+
+
+<include file="Public/ggfooter" />

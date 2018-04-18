@@ -1,0 +1,31 @@
+<include file="Public/header" title="添加用户" />
+<div id="page-wrapper">
+<form action="{:U('member/add')}" method="post">
+	<div class="form-group">
+		<label>用户名</label>
+		<input class="form-control" type="text" name="username" placeholder="username">
+	</div>
+	<div class="form-group">
+		<label>密码</label>
+		<input class="form-control" type="password" name="password" placeholder="password">
+	</div>
+	<div class="form-group">
+		<label>确认密码</label>
+		<input class="form-control" type="password" name="repassword" placeholder="repassword">
+	</div>
+	<div class="form-group">
+		<label>备注</label>
+		<textarea class="form-control" name="beizhu" placeholder="随意介绍" rows="5" cols="20"></textarea>
+	</div>
+	<input type="hidden" name="fid" value="{$fid}">
+    <input type="hidden" name="type"  value="1" >
+	<input type="hidden" name="status" value="1">
+	<input type="hidden" name="num" value="0">
+	<div class="form-group">
+		<button class="btn btn-success" type="submit" >添加</button>
+	</div>
+
+</form>
+</div>
+
+<include file="Public/footer" />

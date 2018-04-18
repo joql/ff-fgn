@@ -1,0 +1,80 @@
+﻿<include file="Public/header" title="添加管理" />
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav navbar-right">
+           <li class=""><a href="{:U('Index/index')}">首页</a></li>
+            <li class="active"><a href="{:U('Index/index')}">发布应用</a></li>
+            <li><a href="{:U('Index/listinfo')}">应用管理</a></li>
+        </ul>
+    </div> <!--/navbar-collapse--></div>
+</div>
+</header>
+<!--=== Breadcrumbs ===-->
+<div class="row-fluid breadcrumbs margin-bottom-20">
+	<div class="container">
+        <h1 class="pull-left">即将完成</h1>
+        <ul class="pull-right breadcrumb">
+            <li>简单设置下面的信息，您的应用发布即可完成</li>
+        </ul>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="adhocUDIDBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">UDIDs</h4>
+      </div>
+      <div class="modal-body">
+              </div>
+    </div>
+  </div>
+</div>
+
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <form class="reg-page sky-form" id="form" method="POST" action="{:U('index/upload')}">
+
+                <div class="douchebag_safari" style="left: -9999px; position: fixed; width: 1px;">
+    
+                </div>
+
+                <div class="reg-header">
+                    <p><img class="appicon" onerror="javascript:this.src='__STATIC__/images/default-icon.png';" /></p>
+                    
+                    <p>版本: 20160111v2.9.9</p>
+                                        <br />
+                </div>
+
+                <section>
+                    <label class="label">昵称 *</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>
+                        <input type="file" id="qqfile" name="qqfile" value="{$info.qqfile}" placeholder="请输入应用昵称">
+                    </label>
+                </section>
+
+               
+                <hr>
+
+                <div id="ed_loading" class="editableform-loading" style="display:none;"></div>
+
+                <div class="row">
+                    <div class="col-md-6 col-xs-6 text-left">
+                      
+                    </div>
+                    <div class="col-md-6 col-xs-6 text-right">
+                        <input type="hidden" name="id" value="{$info.id}" />
+                        <button class="btn-u" type="submit" id="submitButton">发布应用</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!--/container-->		
+<include file="Public/footer" />

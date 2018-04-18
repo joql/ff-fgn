@@ -1,0 +1,140 @@
+<include file="Public/header" title="审核提取" />
+
+<div id="page-wrapper">
+
+    
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <a href="{:U('post/chaxun')}" class="btn btn-default">查询列表</a>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <form action="{:U('post/chaxun')}" method="post">
+
+                <div class="form-group input-group">
+
+                    <input type="text" class="form-control" name="key" placeholder="输入udid关键词搜索">
+
+                    <span class="input-group-btn">
+
+                        <input class="btn btn-default" type="submit" value="提交">
+
+                    </span>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <table class="table table-hover table-striped">
+
+        <thead>
+
+            <tr>
+
+            <if condition="$status eq 3">
+
+                <th>ID</th>
+
+            <else/>
+
+                <th><input id="checkAll" type="checkbox" />ID</th>
+
+            </if>
+
+                <th>昵称</th>
+
+                <th>编号</th>
+
+                <th>udid</th>
+
+            <if condition="$status neq 1">
+
+                <th>批号</th>
+
+                <th>网址</th>
+
+            </if>
+
+                <th>状态</th>
+
+                <th>时间</th>
+
+                <th>操作</th> 
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        <foreach name="model" item="v">
+
+            <tr>
+
+            <if condition="$status eq 3">
+
+                <td>{$v.id}</td>
+
+            <else/>
+
+                <td><input type="checkbox" name="hobby[]" value="{$v.id}" />{$v.id}</td>
+
+            </if>
+
+                <td>{$v.nickname}</td>
+
+                <td>{$v.rid}</td>
+
+                <td style="word-break:break-all; width: 240px;">{$v.udid}</td>
+
+            <if condition="$status neq 1">
+
+                <td><input type="text" value="{$v.pid}" name="pid{$v.id}" style="width: 50px;"></td>
+
+                <td><input type="text" value="{$v.web}" name="web{$v.id}"></td>
+
+            </if>
+
+                <td><if condition="$v.status eq 1"><span class="label label-success">新提交</span>
+
+                    <elseif condition="$v.status eq 2" /><span class="label label-info">待处理</span>
+
+                    <elseif condition="$v.status eq 3" /><span class="label label-primary">已完成</span>
+
+                    </if>
+
+                </td>
+
+                <td>{$v.create_new|date="Y/m/d",###}</td>
+
+                <td><a href="{:U('post/cx_update',array('id'=>$v['id']))}">更新</a> | <a href="{:U('post/cx_delete',array('id'=>$v['id']))}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>
+
+            </tr>
+
+        </foreach>
+
+        </tbody>
+
+    </table>
+
+    
+
+    <div class="clearfix"></div>
+
+    {$page}
+
+ 
+
+</div>
+
+<include file="Public/footer" />

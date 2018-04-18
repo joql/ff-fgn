@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="ie7"> <![endif]-->  
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>[title]</title>
+        <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no minimal-ui">
+
+    <!-- CSS Global Compulsory-->
+    <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__STATIC__/css/style.css" />
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="__STATIC__/css/default.css" id="style_color">
+    <link rel="stylesheet" href="__STATIC__/css/page_log_reg_v1.css">
+    <link rel="stylesheet" href="__STATIC__/css/custom-sky-forms.css">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="__STATIC__/css/custom.css">
+
+    <link rel="stylesheet" href="__STATIC__/css/my.css" />
+</head> 
+
+<body>
+<style>
+.wechat {
+background: url("img/bg1.png") no-repeat scroll 0 0 / 100% 100% rgba(0, 0, 0, 0);
+    display:none;
+    height:auto;
+           border-bottom:1px solid #eee;
+}
+.wechat-small {
+    background: url("img/bg2.png") no-repeat scroll 0 0 / 100% 100% rgba(0, 0, 0, 0);
+    display:block;
+border-bottom:1px solid #eee;
+}
+.wechat-img {
+    padding: 0 50px;
+    max-height:55px;
+}
+
+.wechat-img-small {
+    margin:auto;
+    max-height:55px;
+    padding:0;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+@media (min-width: 820px){
+    .wechat-img {
+        margin:auto;
+        padding:0, 80px;
+    }
+    .wechat {
+        display:block;
+    }
+    .wechat-small {
+        display:none;
+    }
+    .wechat-img-small {
+        margin:auto;
+        padding:0;
+    }
+}
+</style>
+
+
+
+<!--[if lt IE 10]>
+<div class="browser_notice">
+您的浏览器版本较低，无法正确显示网站中的页面和功能，建议您使用 Chrome、Safari 或升级到 Internet Explorer 10 以上版本的浏览器。</div>
+<![endif]-->
+<header>
+<style>
+.ticket-dropdown-menu::before{
+    left:20px;
+}
+.ticket-dropdown-menu::after{
+    left:21px;
+}
+.ticket-link {
+    background:#fff;
+}
+.topbar ul.loginbar li a:hover {
+        color: #1abc9c;
+}
+.topbar ul.loginbar li a:hover > i{
+        color: #1abc9c;
+}
+.zclink a { color:red !important; }
+
+.user-certification {
+    color:#56bc94;
+}
+.user-general {
+    color:#ccc;
+}
+.topbar ul.loginbar li .user-general a {
+    color:#ccc;
+}
+
+</style>
+  <div class="topbar">
+    <div class="container">
+      <!-- Topbar Navigation -->
+      <ul class="loginbar pull-right topmenu-t" >
+                
+       <if condition="$Think.session.homeId neq '' ">
+        <li> <i class="fa fa-user"></i> {:session('homename')}  </li>
+        <li><a href="{:U('member/index')}"><span style="color:#55BE93">账户设置</a></span></li>
+        <li class="Iota">|</li>
+        <li><a href="{:U('login/logout')}">退出</a></li>
+         <li class="Iota">|</li>
+        <li><a href="/images/qiniu/jiaocheng.mp4"><span style="color:#55BE93">视频教程</a></span></li>
+        
+       <else/>
+        <li><a href="{:U('login/denglu')}">登录</a></li>
+        <li class="Iota">|</li>
+        <li><a href="{:U('login/zhuce')}">注册</a></li>
+                <li class="Iota">|</li>
+        <li><a href="/images/qiniu/jiaocheng.mp4"><span style="color:#55BE93">视频教程</a></span></li>
+       </if>
+        
+              </ul>
+      <!-- End Topbar Navigation --></div>
+  </div>
+  <!--=== Header ===-->
+
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container"> 
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="sr-only">Toggle navigation</span> <span class="fa fa-bars"></span> </button>
+        <a  href="/"><img id="logo-header" src="__STATIC__/images/logo_nav.png" class="img-responsive" alt="Logo" width="220" height="42"></a> </div>
+      <!-- Menu -->
+
+            

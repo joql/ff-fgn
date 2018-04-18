@@ -1,0 +1,78 @@
+/*Wrapping element for Sticky-Footer*/
+html {
+  	min-height: 100%;
+  	position: relative;
+}
+body {
+  	/* Margin bottom by footer height */
+  	margin-bottom: 60px;
+    background:#FFF;
+}
+
+/*404 Error Page V4
+------------------------------------*/
+.error-v4 {
+    margin-top:100px;
+	text-align: center;
+}
+
+.error-v4 img {
+	margin-bottom: 20px;
+}
+
+.error-v4 h1 {
+	color: #555;
+	font-size: 40px;
+    margin-top:35px;
+    line-height:50px;
+
+}
+.error-v4 p.regret{
+    color:#555;
+    font-size:24px;
+}
+
+.create_btn {
+    margin-top:50px;
+    width: 354px;
+    border: 2px solid #1abc9c;
+    color: #1abc9c !important;
+}
+.btnp {
+    font-size: 20px;
+    height: 52px;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    text-decoration: none !important;
+    -moz-border-radius: 28px;
+    -webkit-border-radius: 28px;
+    border-radius: 28px;
+}
+.create_btn:hover {
+    color: #fff !important;
+    background: #1abc9c;
+}
+
+.error-v4 span.sorry {
+	color: #fff;
+	display: block;
+	font-size: 25px;
+	padding-bottom: 40px;
+}
+
+/*Sticky-Footer
+------------------------------------*/
+.sticky-footer {
+  	position: absolute;
+  	bottom: 0;
+  	width: 100%;
+  	padding: 20px;
+  	/* Set the fixed height of the footer here */
+  	height: 60px;
+}
+
+.sticky-footer .copyright-space {
+	color: #555;
+	text-align: center;
+}

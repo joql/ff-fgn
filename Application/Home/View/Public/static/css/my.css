@@ -1,0 +1,182 @@
+table th {
+    word-break: keep-all;
+    white-space:nowrap;
+    font-weight:normal;
+}
+.pgy-panel-sea{ 
+    border-color:#dadada;
+}
+.pgy-panel-heading{ 
+    background-color:#56bc94;
+}
+.pgy-warning{ 
+    /*#E7f7f1*/
+    background-color:none;
+}
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+    background-color: #e7f7f1;
+}
+.btn-u-checked{
+    background-color:#7ccaa6;
+}
+.pgy-btn-u:hover {
+    background-color:#7ccaa6;
+}
+.pgy-btn-u{
+    margin:0 5px;
+}
+.pgy-table{
+    color:#555;
+}
+.sidebar-nav-v1 ul li a{
+    font-size:14px;
+}
+.pgy-group-select{
+    color:#555;
+    height:28px;
+    padding:3px 0px;
+    width:200px;
+    padding-left:10px;
+    font-size:14px;
+}
+.pgy-group-select option{
+    color:#555;
+//    padding:3px 0px;
+    padding-left:10px;
+    }
+/
+/* sidebar */
+a:hover, a:focusi {
+    background: #56bc94;
+}
+.sidebar-nav-v1 > li.active,
+.sidebar-nav-v1 > li.active:hover {
+  background: #56bc94;
+}
+.sidebar-nav-v1 ul li:hover a,
+.sidebar-nav-v1 ul li.active a,
+.sidebar-nav-v1 ul li.current a{
+    color:#56bc94;
+}
+.sidebar-nav-v1 ul li a{
+    font-size:14px;
+}
+td.no-results{ 
+    height:150px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+/*crash style*/
+.crash-table > thead > tr > th, 
+.crash-table > tbody > tr > th, 
+.crash-table > tfoot > tr > th, 
+.crash-table > thead > tr > td, 
+.crash-table > tbody > tr > td, 
+.crash-table > tfoot > tr > td{ 
+    padding:8px 30px;
+    font-size:11px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.crash-log {
+    padding:8px 30px;
+    font-size:11px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+// my and mygorup menu bar
+.my-header {
+        border-bottom: 2px solid #eee;
+        position: relative;
+        z-index: 99;
+    }
+    .my-header .my-navbar-default {
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+        border: medium none;
+    }
+    .my-header .my-navbar {
+        margin: 0;
+        min-height: inherit;
+    }
+    .my-navbar-default {
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+        bottom:-8px;
+    }
+    .my-navbar {
+        border: 1px solid transparent;
+        margin-bottom: 20px;
+        min-height: 50px;
+        position: relative;
+        border-radius: 4px;
+    }
+    .my-navbar-nav > li{
+        float:left;
+        padding: 0px;
+        height:40px;
+        display: block;
+        position: relative;
+        color: #555;
+    }
+    .my-header .my-navbar-default .my-navbar-nav > li > a {
+        color: #687074;
+        font-size: 15px;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding: 9px 30px 9px 20px;
+        border-bottom-width: 2px;
+        text-decoration:none;
+    }
+    .my-header .my-navbar-default .my-navbar-nav > li > a:hover, 
+    .my-header .my-navbar-default .my-navbar-nav > .active > a {
+        color: #56bc94;
+        border-bottom: 2px solid #56bc94;
+    }
+    .my-header .my-navbar-nav {
+        position: relative;
+        top: 2px;
+        margin-bottom: 0px;
+    }
+    .my-nav {
+        list-style: outside none none;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+    .my-navbar-nav{
+        margin:0px;
+    }
+/*my index 设置*/
+   .btn-group.open .dropdown-toggle{ 
+       box-shadow:none;
+    } 
+
+.feedback-info {
+    min-height:60px;
+}
+
+.feedback-info span {
+  top: 3px;
+  position: relative;
+}
+
+.voice-feedback{
+    top:10px !important;
+    border-radius:.25em;
+    font-size:11px;
+    text-align:center;
+    white-space:nowrap;
+    color:#fff;
+    display:inline;
+    line-height:1;
+    font-weight:700;
+    padding:4px 7px;
+}
+
+.feedback-info img {
+  width: 60px;
+  float: left;
+  height: 60px;
+  padding: 2px;
+  margin-right: 15px;
+  border: solid 1px #ccc;
+}

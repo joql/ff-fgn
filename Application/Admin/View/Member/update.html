@@ -1,0 +1,197 @@
+<include file="Public/header" title="更新用户" />
+
+<div id="page-wrapper">
+
+<form action="{:U('member/update')}" method="post">
+
+	<div class="form-group">
+
+		<label>用户名</label>
+
+		<input class="form-control" type="text" name="username" value="{$model.username}">
+
+	</div>
+
+  <div class="form-group">
+
+    <label>会员天数</label>
+
+    <input class="form-control" type="text" name="tianshu" placeholder="tianshu" value="{$model.tianshu}">
+
+  </div>
+
+	<div class="form-group">
+
+		<label>空间大小(MB)</label>
+
+		<input class="form-control" type="text" name="allowsize" placeholder="allowsize" value="{$model.allowsize}">
+
+	</div>
+
+	<div class="form-group">
+
+		<label>限制上传大小(MB)</label>
+
+		<input class="form-control" type="text" name="singlesize" placeholder="singlesize" value="{$model.singlesize}">
+
+	</div>
+
+  <div class="form-group">
+
+    <label>会员已上传大小(MB):{$config.uploadedsize}</label> 
+
+  </div>
+
+	<div class="form-group">
+
+		<label>新密码</label>
+
+		<input class="form-control" type="password" name="password" placeholder="不填写则不更改">
+
+	</div>
+
+	<div class="form-group">
+
+        <label>用户类型</label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="type" id="type" value="1" <if condition="$model.type eq 1">checked="checked"</if>>前台用户
+
+        </label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="type" id="type" value="2" <if condition="$model.type eq 2">checked="checked"</if>>管理员
+
+        </label>
+
+    </div>
+
+  <div class="form-group">
+        <label>是否VIP</label>
+        <label class="radio-inline">
+          <input type="radio" name="isvip" id="isvip" value="0" <if condition="$model.isvip eq 0">checked="checked"</if>>是
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="isvip" id="isvip" value="1" <if condition="$model.isvip eq 1">checked="checked"</if>>否
+        </label>
+    </div>
+    
+	  <div class="form-group">
+
+        <label>用户状态</label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="status" id="status" value="0" <if condition="$model.status eq 0">checked="checked"</if>>禁止登陆
+
+        </label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="status" id="status" value="1" <if condition="$model.status eq 1">checked="checked"</if>>正常
+
+        </label>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>上传类型</label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="uptype" id="uptype" value="1" <if condition="$model.uptype eq 1">checked="checked"</if>>七牛
+
+        </label>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>更改会员天数</label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="gts" id="gts" value="0">更改
+
+        </label>
+
+        <label class="radio-inline">
+
+          <input type="radio" name="gts" id="gts" value="1" checked="checked">不更改
+
+        </label>
+
+    </div>
+
+    <div class="form-group">
+
+    <label>accesskey</label>
+
+    <input class="form-control" type="text" name="accesskey" placeholder="accesskey" value="{$model.accesskey}">
+
+  </div>
+
+  <div class="form-group">
+
+    <label>secretkey</label>
+
+    <input class="form-control" type="text" name="secretkey" placeholder="secretkey" value="{$model.secretkey}">
+
+  </div>
+
+  <div class="form-group">
+
+    <label>bucket</label>
+
+    <input class="form-control" type="text" name="bucket" placeholder="bucket" value="{$model.bucket}">
+
+  </div>
+
+  <div class="form-group">
+
+    <label>domain</label>
+
+    <input class="form-control" type="text" name="domain" placeholder="domain" value="{$model.domain}">
+
+  </div>
+
+  <div class="form-group">
+
+    <label>uptoken</label>
+
+    <input class="form-control" type="text" name="uptoken" placeholder="uptoken" value="{$model.uptoken}">
+
+  </div>
+
+    <div class="form-group">
+
+		<label>备注</label>
+
+		<textarea class="form-control" name="beizhu" placeholder="随意介绍" rows="5" cols="20">{$model.beizhu}</textarea>
+
+	</div>
+
+	<div class="form-group">
+
+		<input type="hidden" name="id" value="{$model.id}">
+
+		<input type="hidden" name="fid" value="{$fid}">
+
+		<button class="btn btn-success" type="submit" >更新</button>
+
+	</div>
+
+
+
+
+
+</form>
+
+</div>
+
+
+
+<include file="Public/footer" />

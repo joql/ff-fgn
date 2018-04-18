@@ -1,0 +1,44 @@
+#templateContainer img, #templateContainer img.checked {
+    border:1px solid #ddd;
+}
+#templateContainer img.checked {
+    border:1px solid #56bc94;
+}
+#templateContainer .template-check {
+    display:none;
+    position:absolute; 
+    left: 180px; 
+/*   top: 66px; */
+    top:48px;
+    color: #56bc94;
+}
+
+#templateContainer .over-lay {
+    display:none;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    /*z-index: 9999;*/
+    width: 96px; 
+    height: 155px; 
+    display: block;
+    left:150px;
+    top:9px;
+    display:none;
+}
+.caption {
+    background: rgba(90, 90, 90, 0.65) none repeat scroll 0 0;
+    color: #fff !important;
+    display: none;
+    height: 123px;
+    padding: 2%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 99px;
+    z-index: 2;
+    border-radius: 0; 
+    margin:auto;
+    left:0;
+}

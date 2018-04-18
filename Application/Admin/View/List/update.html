@@ -1,0 +1,23 @@
+<include file="Public/header" title="修改plist" />
+
+<div id="page-wrapper">
+    <span class="btn btn-success">进行plist添加操作</span>
+    <form method="post" action="{:U('list/update')}">
+        <div class="form-group">
+            <label for="post-title">昵称</label>
+            <input type="text" name="nickname" class="form-control" value="{$post.nickname}" id="post-title" placeholder="输入昵称">
+        </div>
+        <div class="form-group">
+            <label for="post-title">批号</label>
+            <input type="text" name="pihao" class="form-control" value="{$post.pihao}" id="post-title" placeholder="输入批号">
+        </div>
+        <div class="form-group">
+            <label for="post-cate">.plist地址</label>
+            <input type="text" name="plist" class="form-control" value="{$post.plist}" id="post-title" placeholder="输入plist地址">
+        </div>
+        <input type="hidden" name="id" value="{$post.id}">
+        <input type="hidden" name="status" value="{$status}">
+        <button type="submit" class="btn btn-default">提交</button>
+    </form>
+</div>
+<include file="Public/footer" />

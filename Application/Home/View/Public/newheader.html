@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>[title]</title>
+
+	<meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no minimal-ui">
+
+    <meta name="keywords" content="iOS Android 免费上传内测分发安装">
+
+    <meta name="description" content="为开发者提供简洁迅速的内测程序分发服务">
+
+
+
+    <!-- CSS Global Compulsory-->
+
+    <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="__STATIC__/css/style.css" />
+
+    <link href="__STATIC__/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="__STATIC__/css/css.css" />
+
+    <script type="text/javascript">
+
+        var allowsize = {$result.allowsize};
+
+        var uploadedsize = {$result.uploadedsize};
+
+        var singlesize = {$result.singlesize};
+
+        var uptoken = '{$result.uptoken}';
+
+        var qndomain = '{$result.domain}';
+
+        var uptype = {$result.uptype}; 
+
+        var tianshu = {$result.tianshu};
+
+        var flash_swf_url = "__STATIC__/images/Moxie.swf";
+
+        var silverlight_xap_url = "__STATIC__/images/Moxie.xap";
+
+        var gettoken = "{:U('index/gettoken')}";
+
+        var bdupload = "{:U('index/uploadbd')}";
+
+        var upload = "{:U('index/upload')}";
+
+    </script>
+
+    <script src="__STATIC__/js/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript" src="__STATIC__/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="__STATIC__/js/jszip.min.js"></script>
+
+    <script type="text/javascript" src="__STATIC__/js/base64.min.js"></script>
+
+    <script type="text/javascript" src="__STATIC__/js/common.js"></script>
+
+</head>
+
+<!--[if lt IE 10]>
+
+<div class="browser_notice">
+
+您的浏览器版本较低，无法正确显示网站中的页面和功能，建议您使用 Chrome、Safari 或升级到 Internet Explorer 10 以上版本的浏览器。</div>
+
+<![endif]-->
+
+<body>
+
+</style>
+
+  <div class="topbar">
+
+    <div class="container">
+
+      <!-- Topbar Navigation -->
+
+      <ul class="loginbar pull-right topmenu-t" >
+
+                
+
+       <if condition="$Think.session.homeId neq '' ">
+
+        <li> <i class="fa fa-user"></i> {:session('homename')}  
+            <if condition="$result.isvip eq '0'">
+                <span class="label label-danger">vip</span>
+            </if>
+        </li>
+
+        <li><a href="{:U('member/index')}"><span style="color:#55BE93">账户设置</a></span></li>
+
+        <li class="Iota">|</li>
+
+        <li><a href="{:U('login/logout')}">退出</a></li>
+        <li class="Iota">|</li>
+
+        <li><a href="/images/qiniu/jiaocheng.mp4"><span style="color:#55BE93">视频教程</a></span></li>
+        
+
+       <else/>
+
+        <li><a href="{:U('login/denglu')}">登录</a></li>
+
+        <li class="Iota">|</li>
+
+        <li><a href="{:U('login/zhuce')}">注册</a></li>
+        <li class="Iota">|</li>
+
+        <li><a href="/images/qiniu/jiaocheng.mp4"><span style="color:#55BE93">视频教程</a></span></li>
+
+       </if>
+
+        
+
+              </ul>
+
+      <!-- End Topbar Navigation --></div>
+
+  </div>
+
+  <!--=== Header ===-->
+
+
+
+  <div class="navbar" role="navigation">
+
+    <div class="container"> 
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="sr-only">Toggle navigation</span> <span class="fa fa-bars"></span> </button>
+
+        <a  href="/"><img id="logo-header" src="__STATIC__/images/logo_nav.png" class="img-responsive" alt="Logo" width="220" height="42"></a> </div>
+
+      <!-- Menu -->
+

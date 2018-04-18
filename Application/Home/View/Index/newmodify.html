@@ -1,0 +1,113 @@
+﻿<include file="Public/header" title="应用合并列表" />
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav navbar-right">
+           <li class=""><a href="{:U('Index/index')}">首页</a></li>
+            <li class="active"><a href="{:U('Index/index')}">发布应用</a></li>
+            <li><a href="{:U('Index/listinfo')}">应用管理</a></li>
+        </ul>
+    </div> <!--/navbar-collapse--></div>
+</div>
+</header>
+<!--=== Breadcrumbs ===-->
+<div class="row-fluid breadcrumbs margin-bottom-20">
+	<div class="container">
+        <h1 class="pull-left">即将完成</h1>
+        <ul class="pull-right breadcrumb">
+            <li>简单设置下面的信息，您的应用发布即可完成</li>
+        </ul>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="adhocUDIDBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">UDIDs</h4>
+      </div>
+      <div class="modal-body">
+              </div>
+    </div>
+  </div>
+</div>
+
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <form class="reg-page sky-form" enctype="multipart/form-data" id="form" method="POST" action="{:U('index/hbupdate')}">
+
+                <div class="douchebag_safari" style="left: -9999px; position: fixed; width: 1px;">
+    
+                </div>
+
+                <div class="reg-header">
+                    <p>
+                    <if condition="$info.newlogo neq '' ">
+                        <img src="__IMG__{$info.newlogo}" class="img-rounded" width="125" height="125" />
+                    <else /> 
+                        <img src="__STATIC__/images/logo11.jpg" class="img-rounded" width="125" height="125" />
+                    </if>
+                    </p>
+                    <p><a onclick="fileSelect();" style="cursor:default">更改图标</a></p>
+                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();" style="display:none;">   
+                </div>
+
+                <section>
+                    <label class="label">昵称 </label>
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>
+                        <input type="text" id="kename" name="kename" value="{$info.kename}" placeholder="请输入应用昵称">
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">应用列表</label>
+                    <for start="0" end="6">
+                        <p style="margin-left:35px;">
+                            <input type="checkbox" name="tid[]" value="{$tid[$i]}" />
+                            按钮名称:
+                            <input type="text" name="tname[]" value="{$tname[$i]}" placeholder="按钮名称">
+                            &nbsp;&nbsp;&nbsp;&nbsp;网址:
+                            <input type="text" style="width:350px;" name="tweb[]" value="{$tweb[$i]}" placeholder="网址">
+                        </p>
+                    </for>
+                </section>
+
+                <section>
+                    <label class="label">介绍</label>
+                    <label class="textarea textarea-resizable">
+                        <textarea rows="6" placeholder="请输入介绍" name="ttext">{$info.ttext}</textarea>
+                    </label>
+                </section>
+                
+                <hr>
+
+                <div id="ed_loading" class="editableform-loading" style="display:none;"></div>
+
+                <div class="row">
+                    <div class="col-md-6 col-xs-6 text-left">
+                      
+                    </div>
+                    <div class="col-md-6 col-xs-6 text-right">
+                        <input type="hidden" name="id" value="{$info.id}" />
+                        <button class="btn-u" type="submit" id="submitButton">保存信息</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!--/container-->		
+<script type="text/javascript">
+    function fileSelect() {
+        document.getElementById("fileToUpload").click(); 
+    }
+    
+    function fileSelected() {
+      // 文件选择后触发次函数
+    }
+</script>
+<include file="Public/footer" />

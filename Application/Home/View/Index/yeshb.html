@@ -1,0 +1,163 @@
+﻿<include file="Public/header" title="应用列表" />
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav navbar-right">
+           <li class=""><a href="{:U('Index/index')}">首页</a></li>
+            <li><a href="{:U('Index/index')}">发布应用</a></li>
+            <li class="active"><a href="{:U('Index/listinfo')}">应用管理</a></li>
+        </ul>
+    </div> <!--/navbar-collapse--></div>
+</div>
+</header>
+<!--=== Breadcrumbs ===-->
+<div class="row-fluid breadcrumbs margin-bottom-20">
+<div class="container">
+    <h1 class="pull-left">我的应用</h1>
+    <ul class="pull-right breadcrumb">
+        <li>管理我上传的应用</li>
+    </ul>
+</div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container content recent"> 	
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xm-12">
+                <a class="btn-u" href="{:U('Index/index')}"><i class="fa fa-cloud-upload"></i> 上传新应用</a> &nbsp;&nbsp; </div>
+            <div class="col-md-4 col-md-offset-2 col-sm-6 col-xm-12">
+            
+                <form method="post" id="searchform" action="{:U('Index/listinfo')}">
+                        <div class="input-group">
+                        <input type="text" name="nickname" class="form-control" style="border-radius:0%  !important;" placeholder="查找应用">
+                            <span class="input-group-btn">
+                                <button class="btn-u" type="submit">查找</button>
+                            </span>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+            <div class="margin-bottom-20"></div>
+        </div> 
+    </div>
+    <div class="tab-v1 margin-bottom-20" style="display:none;">
+        <ul class="nav nav-tabs">
+            <li class="active"><a  href="javascript:void(0)">我的应用</a></li>
+            <!--<li class=""><a href="mygroup.html">我的分组</a></li>-->
+        </ul>                
+    </div>
+    <div class="my-header margin-bottom-20" style="border-bottom: 2px solid #eee;">
+        <div class="my-navbar my-navbar-default" role="navigation">
+            <div class="container" style="padding-left:0px">
+                <div class="my-collapse my-navbar-collapse my-navbar-responsive-collapse">
+                    <ul class="my-nav my-navbar-nav" style="float:left">
+                    <li class="active"><a href="{:U('Index/listinfo')}">我的应用</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-12">
+           <div class="margin-bottom-20">
+            <div class="panel pgy-panel-sea margin-bottom-40" id="tabbb">
+                <div class="panel-heading pgy-panel-heading">
+                  <h3 class="panel-title" style="color:#fff;min-height:34px;height:auto;">
+                  <div class="row">
+                  <div class="col-md-6 col-xs-12 col-sm-6 " style="margin-top:3px">
+                    <i class="fa fa-angle-double-right"></i>我的应用 &nbsp;
+                    <a class="btn-u btn-u-xs rounded-4x pgy-btn-u btn-tab" style="margin-left:20px;"  href="{:U('Index/listinfo')}">全部</a>
+                    <a class="btn-u  btn-u-xs rounded-4x pgy-btn-u btn-tab" href="{:U('Index/listinfo',array('ext'=>apk))}">Android</a>
+                    <a class="btn-u btn-u-xs rounded-4x pgy-btn-u btn-tab "  href="{:U('Index/listinfo',array('ext'=>ipa))}">iOS</a>
+                    <a class="btn-u btn-u-xs rounded-4x pgy-btn-u btn-tab btn-u-checked"  href="{:U('Index/yeshb')}"><span style="color:#FF3333">合并应用</a></span>
+                   </div>
+                    </div>
+                   </h3>
+                </div>
+                <div class="tabbb_box">
+            <form method="post">
+                <table style="display:block;"  class="table table-striped table-hover text-center myapps my_history pgy-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="10%"><input id="checkAll" type="checkbox" /></th>
+                            <th class="text-center" width="10%">图标</th>
+                            <th class="text-center" width="12%">ID</th>
+                            <th class="text-center" width="12%">下载次数</th>
+                            <th class="text-center" width="25%">名称</th>
+                            <th class="text-center" width="10%">创建时间</th>
+                            <th class="text-center" width="11%">设置</th>
+                            <th class="text-center" width="11%">下载</th>
+                            <th class="text-center" width="20%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="list" item="v" key="k">
+                        <tr>
+                            <td class="clickable"><input type="checkbox" name="hobby[]" value="{$v.id}" /></td>
+                            <td class="clickable">
+                            <if condition="$v.newlogo neq '' ">
+                                <img src="__IMG__{$v.newlogo}" class="img-rounded" width="28" height="28" />
+                            <else /> 
+                                <img src="__STATIC__/images/logo11.jpg" class="img-rounded" width="28" height="28" />
+                            </if>
+                               
+                            </td>
+                            <td class="clickable">
+                                {$pp-$k}
+                            </td>
+                            <td class="clickable">
+                                {$v.xznum}
+                            </td>
+                            <td class="clickable">&nbsp;&nbsp;{$v.kename}</td>
+                            <td class="clickable">{$v.lrtime|date="Y-m-d H:i:s",###} </td>
+                            <td class="clickable"><a href="{:U('Index/newmodify',array('id'=>$v['id']))}" target="_blank"> <span class="label label-info">设置</span></td>
+                            <td class="clickable text-center">
+                                <a href="/index.php/duo/{$v['id']}" target="_blank"> <span class="label label-info">下载</span></a>
+                            </td>
+                            <td class="clickable text-center">
+                                <a href="{:U('Index/duodelete',array('id'=>$v['id']))}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><span class="label label-warning">删除 </span></a>
+                            </td>
+                        </tr>
+                    </foreach>   
+                        <tr>
+                            <td colspan="10" align="left">
+                            
+                            <a href="{:U('Index/hblist')}" target="_blank"> <span class="btn btn-success">添加</span></a>
+                            
+                            </td>
+                        </tr>                  
+                    </tbody>
+                </table>
+                
+                <table class="table table-striped table-hover text-center myapps my_history pgy-table" style="display:none;">
+                    <thead>
+                        <tr>
+                           <th class="text-center" width="10%"></th>
+                            <th class="text-center">名称</th>
+                            <th class="text-center" width="15%">最新版本</th>
+                            <th class="text-center" width="15%">分组</th>
+                            <th class="text-center" width="10%">平台</th>
+                            <th class="text-center" width="15%">最后更新</th>
+                            <th class="text-center" width="5%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td colspan="99" class="no-results">您还没有应用，点击这里<a href="/app/publish">发布应用</a> </td></tr>
+                        
+                    </tbody>
+                </table>
+            
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--End Striped Rows-->
+    </div>
+    </form>
+    <div class="pager">{$page}</div>
+
+</div><!--/container-->
+<script type="text/javascript" src="__STATIC__/js/duoxuan.js"></script>
+<include file="Public/footer" />

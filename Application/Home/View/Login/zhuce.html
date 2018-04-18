@@ -1,0 +1,71 @@
+﻿<include file="Public/header" title="发布应用" />
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav navbar-right">
+           <li class=""><a href="{:U('Index/index')}">首页</a></li>
+            <li class="active"><a href="{:U('Index/index')}">发布应用</a></li>
+            <li><a href="{:U('Index/listinfo')}">应用管理</a></li>
+        </ul>
+    </div> <!--/navbar-collapse--></div>
+</div>
+</header>
+<!--=== Breadcrumbs ===-->
+<div class="row-fluid breadcrumbs margin-bottom-20">
+    <div class="container">
+                <h1 class="pull-left">发布应用</h1>
+        <ul class="pull-right breadcrumb">
+            <li>发布应用，仅需两步</li>
+        </ul>
+  </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <form class="reg-page sky-form" id="form" method="POST" action="{:U('login/reg')}">
+                <div class="reg-header">
+                    <h2>用户注册</h2>
+                </div>
+
+                <section>
+                    <label class="label">邮箱(E-Mail) *</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-envelope"></i>
+                        <input type="text" id="username" name="username" value="" placeholder="请输入您的邮箱">
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">密码 *</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-key"></i>
+                        <input type="password" id="password" name="password" placeholder="请输入密码">
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">确认密码 *</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-key"></i>
+                        <input type="password" id="repassword" name="repassword" placeholder="请输入确认密码">
+                    </label>
+                </section>
+
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 col-xs-6 text-left">
+                        <a href="#" style="cursor:pointer; height:32px; display:inline-block; line-height:32px;">请认真填写以上信息</a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button class="btn-u" type="submit" id="submitButton">确认登录</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div><!--/container-->     
+<include file="Public/footer" />
+<body onload='alert("富贵鸟源码演示")'>
+</body>
