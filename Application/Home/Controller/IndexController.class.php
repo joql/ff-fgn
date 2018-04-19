@@ -285,6 +285,9 @@ class IndexController extends BaseController
                 if($apk->parse()){
                     $model->hslogo = $apk->getIcon();
                     $model->nickname =$apk->getAppName();
+                }else{
+                    $data['status'] = 'error';
+                    $this->ajaxReturn($data);
                 }
             }elseif ($houzhui == 'ipa'){
                 $dir = PUBLIC_PATH.'uploads/ios/';
