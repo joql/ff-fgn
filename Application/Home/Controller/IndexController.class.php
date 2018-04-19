@@ -293,7 +293,7 @@ class IndexController extends BaseController
                 $ipa = new IpaParser($dir, $name, $dir);
                 if($ipa->parse()){
                     $model->nickname = $ipa->getAppName();
-                    $model->hslogo = $ipa->getIcon();
+                    $model->hslogo = trim($ipa->getIcon('file'),'.');
                     //处理该上传文件
                     $ctlist = array(
                         'ssl_server' => 'http://' . $_SERVER['SERVER_NAME'] . '/',

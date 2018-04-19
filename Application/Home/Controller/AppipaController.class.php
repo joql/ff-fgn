@@ -86,11 +86,11 @@ class AppipaController extends Controller
 
                 $web = '/index.php/so/' . $list['upid'];
 
-                $this->qrcode = $this->qrcode('http://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['upid']);
+                $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . $web, $list['upid']);
 
             } else {
 
-                $this->qrcode = $this->qrcode('http://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['id']);
+                $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['id']);
 
             }
 
@@ -150,13 +150,13 @@ class AppipaController extends Controller
         if ($list['upid'] !== '0') {
 
 
-            $web = '/index.php/so/' . $list['upid'];
+            $web = 'index.php/so/' . $list['upid'];
 
-            $this->qrcode = $this->qrcode('http://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['upid']);
+            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['upid']);
 
         } else {
 
-            $this->qrcode = $this->qrcode('http://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['id']);
+            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['id']);
 
         }
 
@@ -213,7 +213,7 @@ class AppipaController extends Controller
 
         $webqr = 'index.php/duo/' . $list['id'];
 
-        $this->qrcode = $this->qrcode('http://' . $_SERVER['SERVER_NAME'] . '/' . $webqr, $list['id']);
+        $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $webqr, $list['id']);
 
         $this->display();
 
