@@ -288,11 +288,13 @@ class IndexController extends BaseController
                 }
 
                 $apk = new apptOnPhp(PUBLIC_PATH.'/uploads/'.$domain, $aapt_path);
-                if($apk->parse()){
+                if($aprse_result = $apk->parse()){
                     $model->hslogo = $apk->getIcon();
                     $model->nickname =$apk->getAppName();
                 }else{
                     $data['status'] = 'error';
+                    $data['parse'] = $aprse_result;
+
                     $this->ajaxReturn($data);
                 }
             }elseif ($houzhui == 'ipa'){

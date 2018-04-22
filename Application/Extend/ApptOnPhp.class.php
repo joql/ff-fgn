@@ -34,7 +34,7 @@ class ApptOnPhp{
         if(strpos($this->apk_info[0],'package') !== false){
             return true;
         }
-        return false;
+        return $this->apk_info;
     }
 
     public function getPackageName(){
