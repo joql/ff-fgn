@@ -25,8 +25,10 @@ define('APP_DEBUG',true);
 // 定义应用目录
 define('APP_PATH','./Application/');
 
+//定义根目录
+define('ROOT_PATH',dirname(__FILE__));
 // 定义public目录
-define('PUBLIC_PATH','./Public/');
+define('PUBLIC_PATH',ROOT_PATH.DIRECTORY_SEPARATOR.'Public');
 
 
 

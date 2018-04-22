@@ -51,3 +51,8 @@ function getSettingValueFieldByKey($key,$field)
 {
 	return M('setting')->getFieldByKey($key,$field);
 }
+// ajax返回
+function returnAjax($code, $msg = '', $data = array()){
+    header('Content-Type:application/json; charset=utf-8');
+    exit(json_encode(array('code' => $code, 'data' => $data, 'msg' => $msg)));
+}

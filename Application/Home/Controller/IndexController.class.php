@@ -281,7 +281,13 @@ class IndexController extends BaseController
             $model->fid = session('homeId');
             $model->ext = $houzhui;
             if($houzhui == 'apk'){
-                $apk = new apptOnPhp(PUBLIC_PATH.'/uploads/'.$domain, 'D:\tool\apk-tools\aapt');
+                if(PATH_SEPARATOR == ';'){
+                    $aapt_path = 'cd '.PUBLIC_PATH.'/aapt/windows/ && aapt.exe ';
+                }else{
+                    $aapt_path = 'cd '.PUBLIC_PATH.'/aapt/linux/ && aapt ';
+                }
+
+                $apk = new apptOnPhp(PUBLIC_PATH.'/uploads/'.$domain, $aapt_path);
                 if($apk->parse()){
                     $model->hslogo = $apk->getIcon();
                     $model->nickname =$apk->getAppName();
@@ -290,13 +296,13 @@ class IndexController extends BaseController
                     $this->ajaxReturn($data);
                 }
             }elseif ($houzhui == 'ipa'){
-                $dir = PUBLIC_PATH.'uploads/ios/';
+                $dir = PUBLIC_PATH.'/uploads/ios/';
                 $name = time().rand(111,999).'.ipa';
                 copy(PUBLIC_PATH.'/uploads/'.$domain, $dir.$name);
                 $ipa = new IpaParser($dir, $name, $dir);
                 if($ipa->parse()){
                     $model->nickname = $ipa->getAppName();
-                    $model->hslogo = trim($ipa->getIcon('file'),'.');
+                    $model->hslogo = $ipa->getIcon();
                     //处理该上传文件
                     $ctlist = array(
                         'ssl_server' => 'http://' . $_SERVER['SERVER_NAME'] . '/',
@@ -910,7 +916,6 @@ class IndexController extends BaseController
 
     }
 
-
     public function duodelete($id)
     {
 
@@ -1061,6 +1066,65 @@ class IndexController extends BaseController
 
         }
 
+    }
+
+    /**获取关联应用
+     * use for:
+     * auth: Joql
+     * date:2018-04-22 17:13
+     */
+    public function getMergeList(){
+        $map['id'] = $_POST['id'];
+        $list = M('List');
+        $result = $list->where($map)->find();
+        empty($result) && returnAjax(0, 'id不存在');
+
+        $data = $list->field('id, nickname, hslogo')->where([
+            'nickname'=>$result['nickname'],
+            'id' => ['neq',$result['id']]
+        ])->select();
+        if(empty($data)){
+            returnAjax(0,'无关联应用');
+        }
+        returnAjax(1,'success',$data);
+    }
+    /**
+     * use for:合并应用
+     * auth: Joql
+     * date:2018-04-22 15:24
+     */
+    public function mergeApp(){
+
+        if(empty($_POST['first_id']) || empty($_POST['sec_id'])) returnAjax(0,'id 缺失');
+
+        $list = M('List');
+
+        $first = $list->where([
+            'id'    => $_POST['first_id']
+        ])->find();
+        $sec = $list->where([
+            'id'    => $_POST['sec_id']
+        ])->find();
+        $first_name = $first['ext'] == 'apk'? 'Android':'Ios';
+        $sec_name = $sec['ext'] == 'apk'? 'Android':'Ios';
+        $save = [
+            'newlogo' => $first['hslogo'],
+            'kename'  => $first['nickname'],
+            'fid'     => 1,//fid
+            'tid'     => 'on,on',
+            'tname'   => $first_name.','.$sec_name,
+            'tweb'    => $first['web'].','.$sec['web'],
+            'ttext'   => $first['nickname'],
+            'lrtime'  => time()
+        ];
+
+        $new_list = M('Newlist');
+        $result = $new_list->add($save);
+        if ($result) {
+            returnAjax(1,'success');
+        } else {
+            returnAjax(0,'err',$save);
+        }
     }
 
 

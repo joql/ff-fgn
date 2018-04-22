@@ -1,4 +1,4 @@
-﻿<include file="Public/header" title="应用列表" />
+﻿    <include file="Public/header" title="应用列表" />
     <div class="collapse navbar-collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav navbar-right">
            <li class=""><a href="{:U('Index/index')}">首页</a></li>
@@ -83,15 +83,13 @@
                         <tr>
                             <th class="text-center" width="10%"><input id="checkAll" type="checkbox" /></th>
                             <th class="text-center" width="10%">图标</th>
-                            <th class="text-center" width="12%">ID</th>
-                            <th class="text-center" width="12%">下载次数</th>
-                            <th class="text-center" width="17%">名称</th>
-                            <th class="text-center" width="8%">升级</th>
+                            <th class="text-center" width="9%">ID</th>
+                            <th class="text-center" width="9%">下载次数</th>
+                            <th class="text-center" width="14%">名称</th>
                             <th class="text-center" width="10%">更新时间</th>
                             <th class="text-center" width="10%">设置</th>
                             <th class="text-center" width="10%">平台</th>
-                            <th class="text-center" width="11%">下载</th>
-                            <th class="text-center" width="20%">操作</th>
+                            <th class="text-center" width="29%">操作</th>
                         </tr>
                     </thead>
 
@@ -100,24 +98,20 @@
                         <tr>
                             <td class="clickable"><input type="checkbox" name="hobby[]" value="{$v.id}" /></td>
                             <td class="clickable">
-                            <if condition="$v.zxlogo neq '' ">
-                                 <img src="__IMG__{$v.zxlogo}" class="img-rounded" width="28" height="28" />
-                            <else /> 
-                                 <img src="{$v.hslogo}" class="img-rounded" width="28" height="28" />
-                            </if>
-                               
+                                <if condition="$v.zxlogo neq '' ">
+                                     <img src="__IMG__{$v.zxlogo}" class="img-rounded" width="28" height="28" />
+                                <else />
+                                     <img src="{$v.hslogo}" class="img-rounded" width="28" height="28" />
+                                </if>
                             </td>
                             <td class="clickable">
-                                {$pp-$k}
+                                {$v.id}
                             </td>
                             <td class="clickable">
                                 {$v.xznum}
                             </td>
                             <td class="clickable">&nbsp;&nbsp;{$v.nickname}</td>
 
-                            <td class="clickable">
-                                <a href="{:U('Index/checkupid',array('id'=>$v['id']))}"> <span class="label label-info">升级</span>
-                            </td>
                             <td class="clickable">{$v.create_time|date="Y-m-d H:i:s",###} </td>
                             <td class="clickable"><a href="{:U('Index/modify',array('id'=>$v['id']))}" target="_blank"> <span class="label label-info">设置</span></td>
                            
@@ -130,9 +124,9 @@
                                 
                             </td>
                             <td class="clickable text-center">
+                                <a href="{:U('Index/checkupid',array('id'=>$v['id']))}"> <span class="label label-info">升级</span>
                                 <a href="/index.php/so/{$v['id']}" target="_blank"> <span class="label label-info">下载</span></a>
-                            </td>
-                            <td class="clickable text-center">
+                                <a style="color:red;" onclick="mergeModalShow({$v['id']})"><span class="label label-blue">合并应用 </span></a>
                                 <a href="{:U('Index/delete',array('id'=>$v['id']))}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><span class="label label-warning">删除 </span></a>
                             </td>
                         </tr>
@@ -170,7 +164,39 @@
     </form>
     <div class="pager">{$page}</div>
 
+    <!--合并模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-merge">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">合并应用</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="first_id">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td></td>
+                            <td>id</td>
+                            <td>名称</td>
+                            <td>图标</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="merge_commit">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 </div><!--/container-->
 <script type="text/javascript" src="__STATIC__/js/duoxuan.js"></script>
+<script type="text/javascript" src="__STATIC__/js/listinfo.js"></script>
 
 <include file="Public/footer" />
