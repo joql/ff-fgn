@@ -284,7 +284,7 @@ class IndexController extends BaseController
                 if(PATH_SEPARATOR == ';'){
                     $aapt_path = 'cd '.PUBLIC_PATH.'/aapt/windows/ && aapt.exe ';
                 }else{
-                    $aapt_path = 'cd '.PUBLIC_PATH.'/aapt/linux/ && ./aapt ';
+                    $aapt_path = 'cd '.PUBLIC_PATH.'/aapt/linux/ && ./ aapt ';
                 }
 
                 $apk = new apptOnPhp(PUBLIC_PATH.'/uploads/'.$domain, $aapt_path);
