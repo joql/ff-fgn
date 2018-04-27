@@ -217,3 +217,38 @@ function gqtime($id)
     return ($list['create_time'] + ($list['tianshu'] * 24 * 60 * 60));
 }
 
+//获取系统类型
+function getOS(){
+    $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+    $arr = array();
+    if(strpos($agent, 'windows nt')) {
+        $arr['platform'] = 'windows';
+        $arr['id']=1;
+    } elseif(strpos($agent, 'macintosh')) {
+        $arr['platform'] = 'mac';
+        $arr['id']=2;
+    } elseif(strpos($agent, 'ipod')) {
+        $arr['platform'] = 'ipod';
+        $arr['id']=3;
+    } elseif(strpos($agent, 'ipad')) {
+        $arr['platform'] = 'ipad';
+        $arr['id']=4;
+    } elseif(strpos($agent, 'iphone')) {
+        $arr['platform'] = 'iphone';
+        $arr['id']=5;
+    } elseif (strpos($agent, 'android')) {
+        $arr['platform'] = 'android';
+        $arr['id']=6;
+    } elseif(strpos($agent, 'unix')) {
+        $arr['platform'] = 'unix';
+        $arr['id']=7;
+    } elseif(strpos($agent, 'linux')) {
+        $arr['platform'] = 'linux';
+        $arr['id']=8;
+    } else {
+        $arr['platform'] = 'other';
+        $arr['id']=9;
+    }
+    return $arr;
+}
+

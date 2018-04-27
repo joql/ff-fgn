@@ -5,7 +5,7 @@ use Think\Controller;
 class BaseController extends Controller {
     public function _initialize(){
 
-        /*$sid = session('homeId');
+        $sid = session('homeId');
         $urla = trim($_SERVER['PHP_SELF']);
         //判断用户是否登陆
         if(!isset($sid) ) {
@@ -31,7 +31,7 @@ class BaseController extends Controller {
         if($sjc > $tianshu){
         	session('homeId',null);
         	redirect(U('Login/index'),3,'您账号已过期'.$sjc.'天，请联系超级管理员 :(');
-        }*/
+        }
 
     }
 

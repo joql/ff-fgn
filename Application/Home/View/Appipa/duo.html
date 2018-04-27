@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>{$list.kename}</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <head>
+        <title>{$list.kename}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
-    <!-- CSS Global Compulsory-->
-    <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="__STATIC__/css/style.css" />
-    <link href="__STATIC__/css/bootstrap-theme.min.css" rel="stylesheet" />
-
-
-</head>
+        <!-- CSS Global Compulsory-->
+        <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="__STATIC__/css/style.css" />
+        <link href="__STATIC__/css/bootstrap-theme.min.css" rel="stylesheet" />
+    </head>
 <!--[if lt IE 10]>
 <div class="browser_notice">
-您的浏览器版本较低，无法正确显示网站中的页面和功能，建议您使用 Chrome、Safari 或升级到 Internet Explorer 10 以上版本的浏览器。</div>
+您的浏览器版本较低，无法正确显示网站中的页面和功能，建议您使用 Chrome、Safari 或升级到 Internet Explorer 10 以上版本的浏览器。
+</div>
 <![endif]-->
 <body>
 
@@ -35,7 +34,9 @@
 <!---->
 <div style="margin-left:20px; margin-right:10px;">
 <volist name="info" id="vo">
-    <p style="text-align:center;"><a href="{$vo['tweb']}" class="btn-u" target="_blank" style="height:40px; width:100%;">{$vo['tname']}</a></p>
+    <p style="text-align:center;">
+        <a href="{$vo['tweb']}" class="btn-u" target="_blank" style="height:40px; width:100%;" data-type="{$vo['tname']|strtolower}">{$vo['tname']}</a>
+    </p>
 </volist>
 </div>
 
@@ -110,21 +111,23 @@
             if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
                 if(os_type == 2){
                     $('#down2').show();
+                    //location.href = location.origin+$('a[data-type="android"]').attr('href')
                 }else{
                     $('#down2').hide();
                     $('#down_tip').show().html('请使用安卓设备安装');
+                    //location.href = location.origin+$('a[data-type="ios"]').attr('href')
                 }
             }else if(browser.versions.android){
                 if(os_type == 1){
                     $('#down2').show();
+
                 }else{
                     $('#down2').hide();
                     $('#down_tip').show().html('请使用IOS设备安装');
                 }
             }
         })
-        function ajaxTj()
-        {
+        function ajaxTj() {
             var browser = {
                 versions: function() {
                     var u = navigator.userAgent, app = navigator.appVersion;

@@ -117,63 +117,59 @@ class AppipaController extends Controller
 
     public function index()
     {
-
-
         $xxid = trim(I('xxid'));
-
 
         $model = M('List');
 
+        //设备识别并自动跳转
+        $merge_id = M()->query("select id,tweb,tname from __NEWLIST__ where tweb regexp '\/".$xxid."+(,|$)' limit 1");
+        $os = getOS();
+        if($os['platform'] == 'mac' || $os['platform'] == 'ipod' || $os['platform'] == 'ipad' || $os['platform'] =='iphone'){
+            unset($os);
+            $os = 'ios';
+
+        }else{
+            $os = 'android';
+        }
+        if(!empty($merge_id)){
+            $webs = explode(',', $merge_id[0]['tweb']);
+            $exts = explode(',', $merge_id[0]['tname']);
+            foreach ($webs as $k=>$v){
+                if(!preg_match('/\/'.$xxid.'(,|$)/', $v) && strtolower($exts[$k]) == $os){
+                    header('Location: http://'.$_SERVER['SERVER_NAME'].$v);
+                }else{
+                    continue;
+                }
+            }
+        }
 
         $where['id'] = $xxid;
-
         $upid = $model->where($where)->getField('upid');
 
         if ($upid !== '0') {
-
             $where['id'] = $upid;
-
         }
 
         $res = $model->where($where)->setInc('xznum', '1');
-
         $list = $model->where($where)->find();
-
-
         $uptype = M("Member")->where(array('id' => $list['fid']))->getField('uptype');
-
-
         $this->uptype = $uptype;
-
         $this->list = $list;
-
         if ($list['upid'] !== '0') {
-
-
             $web = 'index.php/so/' . $list['upid'];
-
             $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['upid']);
-
         } else {
-
             $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['id']);
-
         }
-
-
         $this->display();
-
     }
-
 
     public function duo()
     {
 
 
         $xxid = trim(I('xxid'));
-
         $model = M('Newlist');
-
         $where['id'] = $xxid;
 
         $res = $model->where($where)->setInc('xznum', '1');
@@ -197,12 +193,8 @@ class AppipaController extends Controller
         $info = array();
 
         for ($i = 0; $i < count($tid); $i++) {
-
             $info[$i]['tname'] = $tname[$i];
-
             $info[$i]['tweb'] = $tweb[$i];
-
-
         }
 
 

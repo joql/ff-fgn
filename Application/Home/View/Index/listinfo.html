@@ -125,10 +125,13 @@
                             </td>
                             <td class="clickable text-center">
                                 <a href="{:U('Index/index')}?update_id={$v['id']}"> <span class="label label-info">升级</span>
-                                <a href="/index.php/so/{$v['id']}" target="_blank"> <span class="label label-info">下载</span></a>
+                                    <a href="/index.php/so/{$v['id']}" target="_blank"> <span class="label label-info">下载</span></a>
+
                                 <if condition="$v['merge_id'] != ''">
+                                    <!--<a href="/index.php/duo/{$v['merge_id']}" target="_blank"> <span class="label label-info">下载</span></a>-->
                                     <a style="color:red;"><span class="label label-green">已合并[{$v['merge_id']}]</span></a>
                                 <else />
+
                                     <a style="color:red;" onclick="mergeModalShow({$v['id']})"><span class="label label-blue">合并应用 </span></a>
                                 </if>
                                 <a href="{:U('Index/delete',array('id'=>$v['id']))}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><span class="label label-warning">删除 </span></a>
