@@ -28,6 +28,7 @@ $(function () {
     }
 
     if (userJson.type == 1) {
+        //七牛云
         $.ajax({
             type: "GET", url: gettoken, success: function (token) {
                 var uploader = Qiniu.uploader({
@@ -117,9 +118,14 @@ $(function () {
             }
         })
     } else {
+        //本地
         var sUrl = bdupload;
         if (userJson.type == 3) {
             sUrl = qndomain + 'upload.php';
+        }
+        //是否更为更新应用
+        if($('#update_app_id').val() != ''){
+            sUrl += '?update_app_id='+$('#update_app_id').val();
         }
         var uploader = new plupload.Uploader({
             runtimes: 'html5,flash,silverlight,html4',
@@ -131,7 +137,8 @@ $(function () {
             filters: {max_file_size: '100mb', mime_types: [{title: "apps", extensions: "apk,ipa"}]},
             init: {
                 PostInit: function () {
-                }, FilesAdded: function (up, files) {
+                },
+                FilesAdded: function (up, files) {
                     plupload.each(files, function (file) {
                         checkSize(file.size);
                         var file = file.getNative();
@@ -142,11 +149,12 @@ $(function () {
                             var infoplist = zip.file(reg);
                             var resoucesArsc = zip.file(/resources.arsc/);
                             var androidManifest = zip.file(/AndroidManifest.xml/);
-                            parse(infoplist, resoucesArsc, androidManifest)
+                            //parse(infoplist, resoucesArsc, androidManifest)
                         })
                     });
                     uploader.start()
-                }, BeforeUpload: function (up, file) {
+                },
+                BeforeUpload: function (up, file) {
                     if (bError) {
                         uploader.stop();
                         return
@@ -154,11 +162,13 @@ $(function () {
                     $(".tolsize").html("文件大小" + (file.size / 1024 / 1024).toFixed(2) + "MB");
                     $("#upprocess").show();
                     $("#upbtn").hide();
-                }, UploadProgress: function (up, file) {
+                },
+                UploadProgress: function (up, file) {
                     $(".alreadyup").html("已上传" + (file.loaded / 1024).toFixed(2) + "KB");
                     $(".progress-bar").css("width", file.percent + "%");
                     $(".moxie-shim").hide()
-                }, FileUploaded: function (up, file, info) {
+                },
+                FileUploaded: function (up, file, info) {
                     var jsonData = info;
                     apkName = file.name;
                     var apkSize = file.size;
@@ -168,7 +178,8 @@ $(function () {
                     iAppSize = apkSize;
                     bUploaded = true;
                     storeInfo()
-                }, Error: function (up, err) {
+                },
+                Error: function (up, err) {
                 }
             }
         });
@@ -197,6 +208,12 @@ $(function () {
         location = location
     });
 
+    /**
+     * 解析安装包
+     * @param infoplist
+     * @param resoucesArsc
+     * @param androidManifest
+     */
     function parse(infoplist, resoucesArsc, androidManifest) {
         var data = {};
         if (androidManifest.length > 0) {

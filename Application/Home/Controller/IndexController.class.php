@@ -12,18 +12,13 @@ class IndexController extends BaseController
 
     public function index()
     {
-
-
         $member = M('Member');
-
         $result = $member->where(array('id' => session('homeId')))->find();
         $this->result = $result;
-
         if ($result['uptype'] == 1 && $result['accesskey'] == '' && $result['secretkey'] == '') {
             $this->success("当前为七牛上传，请设置七牛信息...", U('Member/jiekou'), 3);
         } else {
             $this->display();
-
         }
 
 
@@ -228,29 +223,23 @@ class IndexController extends BaseController
     }
 
 
+    /**
+     * use for:上传应用
+     * auth: Joql
+     * date:2018-04-27 14:14
+     */
     public function upload()
     {
-
-
         $member = M('Member');
-
         $uptype = $member->where(array('id' => session('homeId')))->getField('uptype ');
 
-
         switch ($uptype) {
-
             //type:1 七牛 type:2本地  type:3远程
-
             case '1':
-
                 $this->userqn();
-
                 break;
-
             case '2':
-
                 $this->userup();
-
                 break;
 
         }
@@ -319,139 +308,82 @@ class IndexController extends BaseController
 
             if ($res = $model->where(array('id' => $_POST['iLocalId']))->save()) {
                 $where['id'] = $_POST['iLocalId'];
-
                 $where['fid'] = session('homeId');
-
                 if ($houzhui == 'ipa') {
-
                     //输出plist
 
                     $fp = fopen('./Public/appipa/' . $_POST['iLocalId'] . ".plist", "w+");
-
                     fwrite($fp, createplist($ctlist));
-
                     fclose($fp);
-
-
                     $plist = 'itms-services://?action=download-manifest&url=' . 'https://' . $_SERVER['SERVER_NAME'] . '/Public/appipa/' . $_POST['iLocalId'] . ".plist";
-
-
                     $model->where($where)->setField('plist', $plist);
-
-
                 } elseif ($houzhui == 'apk') {
-
                     $model->where($where)->setField('uptxt', $domain);
-
                 }
 
-
                 $model->where($where)->setField('web', '/index.php/so/' . $_POST['iLocalId']);
-
                 $member->where(array('id' => session('homeId')))->setInc('appnum', 1);
-
-
                 $data['status'] = 'success';
-
                 $data['id'] = $_POST['iLocalId'];
-
                 $this->ajaxReturn($data);
-
             } else {
                 $data['status'] = 'error';
                 $this->ajaxReturn($data);
             }
-
-
         }
-
     }
 
-
+    /**
+     * use for:本地上传api
+     * auth: Joql
+     * date:2018-04-27 14:34
+     */
     public function uploadbd()
     {
-
         //dd($_POST).'<br>';dd($_FILES).'<br>';die;
-
-
         $member = M('Member');
-
         $result = $member->where(array('id' => session('homeId')))->find();
 
-
         //$upsize = $model-> where(array('fid'=>session('homeId')))->Sum('zsize');
-
-
         $config = array(
-
             'maxSize' => $result['singlesize'] * 1024 * 1024, // 附件上传大小
-
             'rootPath' => './Public/uploads/', // 附件上传根目录
-
             'savePath' => '',// 附件上传（子）目录
-
             'exts' => array('ipa', 'apk'),// 附件上传类型
-
         );
 
-
         $upload = new \Think\Upload($config);// 实例化上传类
-
-
         $info = $upload->uploadOne($_FILES['file']);
 
-
         if (!$info) {
-
             $data['error'] = $upload->getError();
-
         } else {
-
-
             $model = M("List");
-
             $model->uptxt = $info['savepath'] . $info['savename'];
-
             $model->create_time = time();
-
             $model->zsize = $info['size'];
-
             $name = explode('.', $info['name']);
-
-
             $model->fid = session('homeId');
-
             $model->ext = end(explode('.', $info['name']));
 
-
-            if ($tid = $model->add()) {
-
-
-                $model->where($where)->setField('web', '/index.php/so/' . $tid);
-
-
+            if(!empty($_GET['update_app_id'])){
+                //更新应用
                 $data['path'] = $info['savepath'] . $info['savename'];
-
-                $data['id'] = $tid;
-
+                $data['id'] = $_GET['update_app_id'];
                 $data['status'] = 'success';
-
-
-                //dd($tid);
-
                 $this->ajaxReturn($data);
-
-            } else {
-
+            }elseif ($tid = $model->add()){
+                $model->where($where)->setField('web', '/index.php/so/' . $tid);
+                $data['path'] = $info['savepath'] . $info['savename'];
+                $data['id'] = $tid;
+                $data['status'] = 'success';
+                //dd($tid);
+                $this->ajaxReturn($data);
+            }else{
                 $data['status'] = 'error';
-
             }
-
-
         }
-
         $this->ajaxReturn($data, 'JSON');
-
     }
 
 
@@ -475,25 +407,14 @@ class IndexController extends BaseController
 
     public function update()
     {
-
         //默认显示添加表单
-
         if (IS_POST) {
-
-
             $model = M("List");
-
             if (!$model->create()) {
-
                 $this->error($model->getError());
-
             } else {
-
-
             }
-
         }
-
     }
 
 

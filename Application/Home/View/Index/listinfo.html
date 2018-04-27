@@ -124,7 +124,7 @@
                                 
                             </td>
                             <td class="clickable text-center">
-                                <a href="{:U('Index/checkupid',array('id'=>$v['id']))}"> <span class="label label-info">升级</span>
+                                <a href="{:U('Index/index')}?update_id={$v['id']}"> <span class="label label-info">升级</span>
                                 <a href="/index.php/so/{$v['id']}" target="_blank"> <span class="label label-info">下载</span></a>
                                 <if condition="$v['merge_id'] != ''">
                                     <a style="color:red;"><span class="label label-green">已合并[{$v['merge_id']}]</span></a>
