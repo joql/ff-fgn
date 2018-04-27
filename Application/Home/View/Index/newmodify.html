@@ -47,7 +47,7 @@
                 <div class="reg-header">
                     <p>
                     <if condition="$info.newlogo neq '' ">
-                        <img src="__IMG__{$info.newlogo}" class="img-rounded" width="125" height="125" />
+                        <img src="{$info.newlogo}" class="img-rounded" width="125" height="125" />
                     <else /> 
                         <img src="__STATIC__/images/logo11.jpg" class="img-rounded" width="125" height="125" />
                     </if>
@@ -64,9 +64,9 @@
                     </label>
                 </section>
 
-                <section>
+                <!--<section>
                     <label class="label">应用列表</label>
-                    <for start="0" end="6">
+                    <for start="0" end="2">
                         <p style="margin-left:35px;">
                             <input type="checkbox" name="tid[]" value="{$tid[$i]}" />
                             按钮名称:
@@ -75,7 +75,7 @@
                             <input type="text" style="width:350px;" name="tweb[]" value="{$tweb[$i]}" placeholder="网址">
                         </p>
                     </for>
-                </section>
+                </section>-->
 
                 <section>
                     <label class="label">介绍</label>

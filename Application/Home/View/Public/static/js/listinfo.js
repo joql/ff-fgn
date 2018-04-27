@@ -45,7 +45,7 @@ $('#merge_commit').click(function () {
         dataType: "json",
         success: function (data) {
             if (data.code == 1) {
-
+                $('#modal-merge').modal('hide');
             } else {
                 alert(data.msg);
             }
