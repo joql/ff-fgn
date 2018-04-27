@@ -136,7 +136,7 @@ class AppipaController extends Controller
             $exts = explode(',', $merge_id[0]['tname']);
             foreach ($webs as $k=>$v){
                 if(!preg_match('/\/'.$xxid.'(,|$)/', $v) && strtolower($exts[$k]) == $os){
-                    header('Location: http://'.$_SERVER['SERVER_NAME'].$v);
+                    header('Location: https://'.$_SERVER['SERVER_NAME'].$v);
                 }else{
                     continue;
                 }
