@@ -157,9 +157,9 @@ class AppipaController extends Controller
         $this->list = $list;
         if ($list['upid'] !== '0') {
             $web = 'index.php/so/' . $list['upid'];
-            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['upid']);
+            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['hslogo'], $list['upid']);
         } else {
-            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['id']);
+            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['hslogo'], $list['id']);
         }
         $this->display();
     }
@@ -212,7 +212,7 @@ class AppipaController extends Controller
     }
 
 
-    public function qrcode($text = 'http://xx.w6cc.com', $tid, $size = '4', $level = 'L', $padding = 2, $logo = true)
+    public function qrcode($text = 'http://xx.w6cc.com', $logo = '', $tid, $size = '4', $level = 'L', $padding = 2)
     {
 
         $path = './Public/png/';
@@ -222,8 +222,25 @@ class AppipaController extends Controller
         vendor("Phpqrcode.phpqrcode");
 
         \QRcode::png($text, $QR, $level, $size, $padding);
+        if(!empty($logo)){
+            $qr_hand = imagecreatefromstring(file_get_contents($QR));
 
-        imagepng($QR);
+            $exploded = explode(',', $logo, 2); // limit to 2 parts, i.e: find the first comma
+            $encoded = $exploded[1]; // pick up the 2nd part
+            $decoded = base64_decode($encoded);
+            $logo = imagecreatefromstring($decoded);
+
+            $QR_width = imagesx($qr_hand);
+            $QR_height = imagesy($qr_hand);
+            $logo_width = imagesx($logo);
+            $logo_height = imagesy($logo);
+            $logo_qr_width = $QR_width / 5;
+            $scale = $logo_width / $logo_qr_width;
+            $logo_qr_height = $logo_height / $scale;
+            $from_width = ($QR_width - $logo_qr_width) / 2;
+            imagecopyresampled($qr_hand, $logo, $from_width, $from_width, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
+        }
+        imagepng($qr_hand,$QR);
 
         return $tid;
 
