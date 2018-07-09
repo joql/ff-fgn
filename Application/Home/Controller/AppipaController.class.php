@@ -212,7 +212,7 @@ class AppipaController extends Controller
     }
 
 
-    public function qrcode($text = 'http://xx.w6cc.com', $logo = '', $tid, $size = '10', $level = 'L', $padding = 2)
+    public function qrcode($text = 'http://xx.w6cc.com', $logo = '', $tid, $size = '10', $level = 'M', $padding = 2)
     {
 
         $path = './Public/png/';
@@ -229,12 +229,14 @@ class AppipaController extends Controller
             $encoded = $exploded[1]; // pick up the 2nd part
             $decoded = base64_decode($encoded);
             $logo = imagecreatefromstring($decoded);
-
+            //解决颜色失真
+            if (imageistruecolor($logo))
+                imagetruecolortopalette($logo, false, 65535);
             $QR_width = imagesx($qr_hand);
             $QR_height = imagesy($qr_hand);
             $logo_width = imagesx($logo);
             $logo_height = imagesy($logo);
-            $logo_qr_width = $QR_width / 6;
+            $logo_qr_width = $QR_width / 5;
             $scale = $logo_width / $logo_qr_width;
             $logo_qr_height = $logo_height / $scale;
             $from_width = ($QR_width - $logo_qr_width) / 2;

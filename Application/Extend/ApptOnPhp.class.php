@@ -53,7 +53,7 @@ class ApptOnPhp{
 
     public function getIcon($type='base64', $dst=''){
         foreach ($this->apk_info as $v){
-            if(preg_match('/icon=\'(res.*?)\'/', $v, $match)){
+            if(preg_match('/application-icon-640:\'(res.*?)\'/', $v, $match)){
                 $zip = new \ZipArchive();
                 $zip->open($this->apk_path);
                 if($type == 'base64'){
