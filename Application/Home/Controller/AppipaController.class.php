@@ -212,7 +212,7 @@ class AppipaController extends Controller
     }
 
 
-    public function qrcode($text = 'http://xx.w6cc.com', $logo = '', $tid, $size = '4', $level = 'L', $padding = 2)
+    public function qrcode($text = 'http://xx.w6cc.com', $logo = '', $tid, $size = '10', $level = 'L', $padding = 2)
     {
 
         $path = './Public/png/';
