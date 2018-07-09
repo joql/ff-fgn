@@ -234,7 +234,7 @@ class AppipaController extends Controller
             $QR_height = imagesy($qr_hand);
             $logo_width = imagesx($logo);
             $logo_height = imagesy($logo);
-            $logo_qr_width = $QR_width / 5;
+            $logo_qr_width = $QR_width / 6;
             $scale = $logo_width / $logo_qr_width;
             $logo_qr_height = $logo_height / $scale;
             $from_width = ($QR_width - $logo_qr_width) / 2;
