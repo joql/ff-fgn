@@ -56,4 +56,21 @@ $('#merge_commit').click(function () {
     });
 });
 
+function updateIcon(d) {
+    $.ajax({
+        url: "updateIcon",
+        type: "post",
+        data: {
+            id: d,
+        },
+        dataType: "json",
+        success: function (data) {
+            alert(data.msg);
+        },
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            console.log(textStatus + "出错！" + errorThrown);
+        }
+    });
+}
+
 

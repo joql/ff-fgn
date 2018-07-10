@@ -986,7 +986,43 @@ class IndexController extends BaseController
         } else {
             returnAjax(0,'err',$save);
         }
+    }    /**
+     * use for:合并应用
+     * auth: Joql
+     * date:2018-04-22 15:24
+     */
+    public function updateIcon(){
+
+        if(empty($_POST['id'])) returnAjax(0,'id 缺失');
+
+        $list = M('List');
+
+        $merge_info = M()->query("select id,tweb,tname from __NEWLIST__ where tweb regexp '\/".$_POST['id']."+(,|$)' limit 1");
+        $webs = explode(',', $merge_info[0]['tweb']);
+        $exts = explode(',', $merge_info[0]['tname']);
+        foreach ($webs as $k=>$v){
+            if(!preg_match('/\/'.$_POST['id'].'(,|$)/', $v)){
+                $tmp = explode('/',$v);
+                $merge_id = end($tmp);
+            }else{
+                continue;
+            }
+        }
+        $info = $list->where([
+            'id'=>$merge_id
+        ])->find();
+        $result = $list->where([
+            'id'=>$_POST['id']
+        ])->save([
+            'hslogo'=>$info['hslogo']
+        ]);
+        if ($result) {
+            returnAjax(1,'同步成功');
+        } else {
+            returnAjax(0,'同步失败',$merge_id);
+        }
     }
+
 
 
     /**
