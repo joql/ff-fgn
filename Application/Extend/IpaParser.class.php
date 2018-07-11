@@ -95,7 +95,7 @@ class IpaParser
             sort($array);
             for ($p = 0; $p < count($icon); $p++) {
                 if ($array[0] == filesize($this->d. '/' . $icon[$p] . '@2x.png')) {
-                    $ext = preg_match('/60x60/', $icon[$p]) ? '@3x.png' : '@2x.png';
+                    $ext = preg_match('/20x20/', $icon[$p]) ? '@3x.png' : '@2x.png';
                     $oldfile = $this->d. '/' . $icon[$p] . $ext;
                 }
             }

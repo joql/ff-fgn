@@ -987,7 +987,7 @@ class IndexController extends BaseController
             returnAjax(0,'err',$save);
         }
     }    /**
-     * use for:合并应用
+     * use for:更新icon
      * auth: Joql
      * date:2018-04-22 15:24
      */
@@ -1001,8 +1001,8 @@ class IndexController extends BaseController
         $webs = explode(',', $merge_info[0]['tweb']);
         $exts = explode(',', $merge_info[0]['tname']);
         foreach ($webs as $k=>$v){
-            if(!preg_match('/\/'.$_POST['id'].'(,|$)/', $v)){
-                $tmp = explode('/',$v);
+            $tmp = explode('/',$v);
+            if(end($tmp) != $_POST['id']){
                 $merge_id = end($tmp);
             }else{
                 continue;

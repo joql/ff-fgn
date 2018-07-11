@@ -350,7 +350,7 @@ function storeInfo() {
             window.location.href = "/index.php/so/" + json.id
         },
         error: function (data) {
-            window.location.href = "/index.php/Appipa/index/listinfo"
+            console.log(data);
         }
     })
 }
