@@ -157,9 +157,9 @@ class AppipaController extends Controller
         $this->list = $list;
         if ($list['upid'] !== '0') {
             $web = 'index.php/so/' . $list['upid'];
-            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $web, $list['hslogo'], $list['upid']);
+            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] .$web, $list['hslogo'], $list['upid']);
         } else {
-            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . '/' . $list['web'], $list['hslogo'], $list['id']);
+            $this->qrcode = $this->qrcode('https://' . $_SERVER['SERVER_NAME'] . $list['web'], $list['hslogo'], $list['id']);
         }
         $this->display();
     }
